@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, Download, CheckCircle2, ChevronRight, ChevronLeft, Plus, Minus, Home, LayoutGrid, Armchair, Layers, Building, Building2, Hotel, Warehouse, Sofa, Utensils, Bed, Baby, Coffee, LayoutColumns, LayoutPanelLeft, Lamp, Frame, Square, Package } from "lucide-react";
+import { Calculator, Download, CheckCircle2, ChevronRight, ChevronLeft, Plus, Minus, Home, LayoutGrid, Armchair, Layers, Building, Building2, Hotel, Warehouse, Sofa, Utensils, Bed, Baby, Coffee, Columns2, PanelLeft, Lamp, Frame, Square, Package } from "lucide-react";
 import Image from "next/image";
 import { BHK_OPTIONS, ROOM_OPTIONS, FURNITURE_ITEMS } from "@/data/calculator";
 
@@ -157,8 +157,8 @@ Contact us at hello@banaya.com for a formal consultation.
 
   const FURNITURE_ICONS: Record<string, any> = {
     "bed": Bed,
-    "wardrobe_2": LayoutColumns,
-    "wardrobe_5": LayoutPanelLeft,
+    "wardrobe_2": Columns2,
+    "wardrobe_5": PanelLeft,
     "modular_kitchen": Utensils,
     "kitchen_overhead": Layers,
     "mandir": Lamp,

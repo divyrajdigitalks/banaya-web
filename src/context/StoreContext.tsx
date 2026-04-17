@@ -122,6 +122,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         cart,
         wishlist,
         addToCart,
+        updateQuantity,
         removeFromCart,
         addToWishlist,
         removeFromWishlist,
