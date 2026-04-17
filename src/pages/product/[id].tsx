@@ -4,27 +4,50 @@ import { FEATURED_PRODUCTS } from "@/data/mock";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Truck, Shield, RefreshCw, Heart, Share2, Plus, Minus, ArrowRight } from "lucide-react";
 import ProductCard from "@/components/product/ProductCard";
+import { useStore } from "@/context/StoreContext";
 
 const ProductDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("details");
+  const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useStore();
 
   const product = FEATURED_PRODUCTS.find(p => p.id === id) || FEATURED_PRODUCTS[0];
+  const isWishlisted = isInWishlist(product.id);
 
   const images = [
     product.image,
     product.hoverImage || product.image,
-    "https://images.unsplash.com/photo-1554295405-abb8fd54f153?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1519947486511-46149fa0a254?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1617806118233-f8e167c4fa81?auto=format&fit=crop&q=80&w=800",
   ];
 
   const [mainImage, setMainImage] = useState(images[0]);
+
+  useEffect(() => {
+    if (product) {
+      setMainImage(product.image);
+    }
+  }, [product]);
+
+  const handleAddToCart = () => {
+    for (let i = 0; i < quantity; i++) {
+      addToCart(product);
+    }
+  };
+
+  const handleWishlist = () => {
+    if (isWishlisted) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
 
   return (
     <Layout title={`${product.name} | Banaya`}>
@@ -95,12 +118,20 @@ const ProductDetails = () => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Button size="lg" className="flex-grow rounded-full shadow-xl">Add to Selection</Button>
+                <Button size="lg" onClick={handleAddToCart} className="flex-grow rounded-full shadow-xl">Add to Selection</Button>
                 <Button variant="outline" size="lg" className="flex-grow rounded-full border-brand-charcoal/10 bg-white hover:bg-brand-charcoal hover:text-brand-pearl">
                   Buy Now
                 </Button>
-                <button className="h-[60px] w-[60px] flex items-center justify-center rounded-full border border-brand-charcoal/10 hover:bg-brand-gold hover:text-brand-charcoal transition-all duration-500 shadow-sm">
-                  <Heart className="h-6 w-6 stroke-[1.5]" />
+                <button 
+                  onClick={handleWishlist}
+                  className={`h-[60px] w-[60px] flex items-center justify-center rounded-full border transition-all duration-500 shadow-sm ${isWishlisted ? "bg-white border-red-500 text-red-500 scale-110" : "border-brand-charcoal/10 hover:border-red-500 hover:text-red-500 bg-white"}`}
+                >
+                  <motion.div
+                    animate={isWishlisted ? { scale: [1, 1.2, 1] } : {}}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Heart className={`h-6 w-6 stroke-[1.5] ${isWishlisted ? "fill-red-500" : ""}`} />
+                  </motion.div>
                 </button>
               </div>
 
@@ -174,7 +205,7 @@ const ProductDetails = () => {
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {FEATURED_PRODUCTS.map((p) => (
+            {FEATURED_PRODUCTS.slice(0, 4).map((p) => (
               <ProductCard key={p.id} {...p} />
             ))}
           </div>

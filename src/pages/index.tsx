@@ -276,33 +276,69 @@ export default function Home() {
           </section>
 
           {/* Social Proof: Immersive Slider */}
-          <section className="py-32 bg-white overflow-hidden">
-            <div className="container mx-auto px-6 md:px-12 mb-20 text-center">
-              <p className="text-[10px] uppercase tracking-[0.4em] text-brand-gold font-black mb-4">#BanayaLifestyle</p>
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-charcoal">Immersive Living</h2>
-            </div>
-            <div className="flex gap-8 overflow-hidden px-6">
-              <motion.div 
-                animate={{ x: [0, -1000] }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="flex gap-8 shrink-0"
-              >
-                {[1, 2, 3, 4, 5, 6, 1, 2, 3].map((i, idx) => (
-                  <div key={idx} className="relative aspect-square w-80 md:w-[450px] shrink-0 overflow-hidden rounded-[3rem] shadow-xl group">
-                    <Image
-                      src={`https://images.unsplash.com/photo-15${i}0000000000?auto=format&fit=crop&q=80&w=800`}
-                      alt="Social Proof"
-                      fill
-                      className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-brand-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <Star className="h-8 w-8 text-brand-pearl fill-brand-pearl" />
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </section>
+         <section className="py-32 bg-white overflow-hidden">
+  <div className="container mx-auto px-6 md:px-12 mb-20 text-center">
+    <p className="text-[10px] uppercase tracking-[0.4em] text-brand-gold font-black mb-4">
+      #BanayaLifestyle
+    </p>
+    <h2 className="text-4xl md:text-5xl font-serif font-bold text-brand-charcoal">
+      Immersive Living
+    </h2>
+  </div>
+
+  <div className="flex gap-8 overflow-hidden px-6">
+    <motion.div
+      animate={{ x: [0, -2000] }}
+      transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      className="flex gap-8 shrink-0"
+    >
+      <div className="relative aspect-square w-80 md:w-[450px] shrink-0 overflow-hidden rounded-[3rem] shadow-xl group">
+        <Image
+          src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8THV4dXJ5JTIwTGl2aW5nJTIwUm9vbXxlbnwwfHwwfHx8MA%3D%3D"
+          alt="Luxury Living Room"
+          fill
+          className="object-cover transition-transform duration-1000 group-hover:scale-110"
+        />
+      </div>
+
+      <div className="relative aspect-square w-80 md:w-[450px] shrink-0 overflow-hidden rounded-[3rem] shadow-xl group">
+        <Image
+          src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800"
+          alt="Modern Sofa"
+          fill
+          className="object-cover transition-transform duration-1000 group-hover:scale-110"
+        />
+      </div>
+
+      <div className="relative aspect-square w-80 md:w-[450px] shrink-0 overflow-hidden rounded-[3rem] shadow-xl group">
+        <Image
+          src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&q=80&w=800"
+          alt="Dining Set"
+          fill
+          className="object-cover transition-transform duration-1000 group-hover:scale-110"
+        />
+      </div>
+
+      <div className="relative aspect-square w-80 md:w-[450px] shrink-0 overflow-hidden rounded-[3rem] shadow-xl group">
+        <Image
+          src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVkcm9vbXxlbnwwfHwwfHx8MA%3D%3D"
+          alt="Bedroom"
+          fill
+          className="object-cover transition-transform duration-1000 group-hover:scale-110"
+        />
+      </div>
+
+      <div className="relative aspect-square w-80 md:w-[450px] shrink-0 overflow-hidden rounded-[3rem] shadow-xl group">
+        <Image
+          src="https://images.unsplash.com/photo-1535957998253-26ae1ef29506?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8V29ya3NwYWNlfGVufDB8fDB8fHww"
+          alt="Workspace"
+          fill
+          className="object-cover transition-transform duration-1000 group-hover:scale-110"
+        />
+      </div>
+    </motion.div>
+  </div>
+</section>
 
         </div>
       </div>

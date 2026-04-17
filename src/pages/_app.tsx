@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Montserrat, Cormorant_Garamond } from "next/font/google";
+import { StoreProvider } from "@/context/StoreContext";
 
 const sans = Montserrat({
   subsets: ["latin"],
@@ -16,8 +17,10 @@ const serif = Cormorant_Garamond({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${sans.variable} ${serif.variable} font-sans`}>
-      <Component {...pageProps} />
-    </div>
+    <StoreProvider>
+      <div className={`${sans.variable} ${serif.variable} font-sans`}>
+        <Component {...pageProps} />
+      </div>
+    </StoreProvider>
   );
 }

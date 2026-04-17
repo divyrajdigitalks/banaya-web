@@ -1,28 +1,14 @@
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/Button";
-import { FEATURED_PRODUCTS } from "@/data/mock";
 import Image from "next/image";
 import Link from "next/link";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useStore } from "@/context/StoreContext";
 
 const CartPage = () => {
-  const [items, setItems] = useState([
-    { ...FEATURED_PRODUCTS[0], quantity: 1 },
-    { ...FEATURED_PRODUCTS[1], quantity: 1 },
-  ]);
+  const { cart, updateQuantity, removeFromCart } = useStore();
 
-  const updateQuantity = (id: string, delta: number) => {
-    setItems(items.map(item => 
-      item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item
-    ));
-  };
-
-  const removeItem = (id: string) => {
-    setItems(items.filter(item => item.id !== id));
-  };
-
-  const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
     <Layout title="Your Selection Bag">
@@ -34,15 +20,15 @@ const CartPage = () => {
               <h1 className="text-5xl md:text-6xl font-serif font-black text-brand-charcoal">The Selection</h1>
             </div>
             <p className="text-brand-stone text-sm uppercase tracking-widest font-bold">
-              {items.length} Exquisite Items
+              {cart.length} Exquisite Items
             </p>
           </div>
 
-          {items.length > 0 ? (
+          {cart.length > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
               {/* Cart Items */}
               <div className="lg:col-span-2 space-y-8">
-                {items.map((item) => (
+                {cart.map((item) => (
                   <div key={item.id} className="bg-white p-8 flex flex-col sm:flex-row gap-10 items-center shadow-sm rounded-2xl border border-brand-charcoal/5 group">
                     <div className="relative h-48 w-40 bg-brand-pearl shrink-0 overflow-hidden rounded-xl">
                       <Image src={item.image} alt={item.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -59,7 +45,7 @@ const CartPage = () => {
                     </div>
                     <div className="text-right min-w-[120px] space-y-4">
                       <p className="text-xl font-bold text-brand-charcoal">₹{(item.price * item.quantity).toLocaleString()}</p>
-                      <button onClick={() => removeItem(item.id)} className="text-brand-stone hover:text-red-600 transition-colors uppercase text-[10px] font-black tracking-widest flex items-center gap-2 justify-end ml-auto">
+                      <button onClick={() => removeFromCart(item.id)} className="text-brand-stone hover:text-red-600 transition-colors uppercase text-[10px] font-black tracking-widest flex items-center gap-2 justify-end ml-auto">
                         <Trash2 className="h-4 w-4" /> Remove
                       </button>
                     </div>
@@ -96,7 +82,9 @@ const CartPage = () => {
                       <span className="text-3xl font-serif font-black text-brand-gold">₹{(subtotal * 1.18).toLocaleString()}</span>
                     </div>
                   </div>
-                  <Button size="lg" className="w-full mb-6 bg-brand-gold text-brand-charcoal hover:bg-brand-pearl rounded-full py-6">Proceed to Checkout</Button>
+                  <Link href="/checkout">
+                    <Button size="lg" className="w-full mb-6 bg-brand-gold text-brand-charcoal hover:bg-brand-pearl rounded-full py-6">Proceed to Checkout</Button>
+                  </Link>
                   <p className="text-[9px] text-center text-brand-pearl/30 uppercase tracking-[0.2em] font-bold">Fully Secure SSL Encryption</p>
                 </div>
               </div>

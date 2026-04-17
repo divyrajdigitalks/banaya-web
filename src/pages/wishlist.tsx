@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/Button";
 import ProductCard from "@/components/product/ProductCard";
 import { FEATURED_PRODUCTS } from "@/data/mock";
 import Link from "next/link";
-import { Heart, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { Heart, ArrowRight, X } from "lucide-react";
+import { useStore } from "@/context/StoreContext";
 
 const WishlistPage = () => {
-  const [wishlistItems, setWishlistItems] = useState(FEATURED_PRODUCTS.slice(0, 2));
+  const { wishlist, removeFromWishlist } = useStore();
 
   return (
     <Layout title="Your Wishlist">
@@ -18,23 +18,24 @@ const WishlistPage = () => {
               <p className="text-[10px] uppercase tracking-[0.4em] text-brand-gold font-bold">Your Selection</p>
               <h1 className="text-5xl md:text-6xl font-serif font-black text-brand-charcoal">The Wishlist</h1>
             </div>
-            {wishlistItems.length > 0 && (
+            {wishlist.length > 0 && (
               <p className="text-brand-stone text-sm uppercase tracking-widest font-bold">
-                {wishlistItems.length} Saved Treasures
+                {wishlist.length} Saved Treasures
               </p>
             )}
           </div>
 
-          {wishlistItems.length > 0 ? (
+          {wishlist.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
-              {wishlistItems.map((product) => (
+              {wishlist.map((product) => (
                 <div key={product.id} className="relative group">
                   <ProductCard {...product} />
                   <button 
-                    onClick={() => setWishlistItems(items => items.filter(i => i.id !== product.id))}
-                    className="absolute top-4 left-4 z-20 bg-brand-charcoal text-brand-pearl p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                    onClick={() => removeFromWishlist(product.id)}
+                    className="absolute top-4 left-4 z-20 bg-brand-charcoal text-brand-pearl p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-gold flex items-center gap-2 rounded-full shadow-xl"
                   >
-                    <span className="text-[10px] uppercase font-bold px-2">Remove</span>
+                    <X className="h-3 w-3" />
+                    <span className="text-[8px] uppercase font-black tracking-widest pr-2">Remove</span>
                   </button>
                 </div>
               ))}
@@ -53,21 +54,19 @@ const WishlistPage = () => {
           )}
 
           {/* Recommended Section */}
-          {wishlistItems.length > 0 && (
-            <div className="mt-32">
-              <div className="flex justify-between items-center mb-12">
-                <h2 className="text-3xl font-serif font-bold">Complete Your Space</h2>
-                <Link href="/shop" className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em]">
-                  Shop New Arrivals <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
-                </Link>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {FEATURED_PRODUCTS.slice(2, 6).map((product) => (
-                  <ProductCard key={product.id} {...product} />
-                ))}
-              </div>
+          <div className="mt-32">
+            <div className="flex justify-between items-center mb-12">
+              <h2 className="text-3xl font-serif font-bold">Complete Your Space</h2>
+              <Link href="/shop" className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em]">
+                Shop New Arrivals <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
+              </Link>
             </div>
-          )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {FEATURED_PRODUCTS.slice(0, 4).map((product) => (
+                <ProductCard key={product.id} {...product} />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </Layout>

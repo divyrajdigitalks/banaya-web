@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, ShoppingBag } from "lucide-react";
+import { Heart, ShoppingBag, Check } from "lucide-react";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useStore } from "@/context/StoreContext";
 
 interface ProductCardProps {
   id: string;
@@ -17,12 +18,32 @@ interface ProductCardProps {
 const ProductCard = ({ id, name, price, image, hoverImage, category, tag }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isAdding, setIsAdding] = useState(false);
+  const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useStore();
+
+  const isWishlisted = isInWishlist(id);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     setMousePos({ x, y });
+  };
+
+  const handleQuickAdd = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsAdding(true);
+    addToCart({ id, name, price, image, category });
+    setTimeout(() => setIsAdding(false), 1500);
+  };
+
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isWishlisted) {
+      removeFromWishlist(id);
+    } else {
+      addToWishlist({ id, name, price, image, category });
+    }
   };
 
   return (
@@ -48,8 +69,20 @@ const ProductCard = ({ id, name, price, image, hoverImage, category, tag }: Prod
             {tag}
           </span>
         )}
-        <button className="absolute top-6 right-6 z-10 p-3 bg-brand-pearl/90 backdrop-blur-sm rounded-full text-brand-charcoal hover:bg-brand-charcoal hover:text-brand-pearl transition-all duration-500 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0">
-          <Heart className="h-4 w-4 stroke-[1.5]" />
+        <button 
+          onClick={handleWishlist}
+          className={`absolute top-6 right-6 z-10 p-3 rounded-full transition-all duration-500 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 ${
+            isWishlisted 
+              ? "bg-white text-red-500 shadow-lg scale-110" 
+              : "bg-brand-pearl/90 backdrop-blur-sm text-brand-charcoal hover:bg-white hover:text-red-500"
+          }`}
+        >
+          <motion.div
+            animate={isWishlisted ? { scale: [1, 1.3, 1] } : {}}
+            transition={{ duration: 0.3 }}
+          >
+            <Heart className={`h-4 w-4 stroke-[1.5] ${isWishlisted ? "fill-red-500 stroke-red-500" : ""}`} />
+          </motion.div>
         </button>
         
         <Link href={`/product/${id}`}>
@@ -63,9 +96,36 @@ const ProductCard = ({ id, name, price, image, hoverImage, category, tag }: Prod
 
         {/* Quick Add Overlay */}
         <div className="absolute inset-x-0 bottom-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-brand-charcoal/80 to-transparent pt-12">
-          <button className="w-full bg-brand-pearl text-brand-charcoal py-4 rounded-full font-black text-[10px] uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-brand-gold transition-colors shadow-2xl">
-            <ShoppingBag className="h-4 w-4" />
-            Quick Add
+          <button 
+            onClick={handleQuickAdd}
+            disabled={isAdding}
+            className="w-full bg-brand-pearl text-brand-charcoal py-4 rounded-full font-black text-[10px] uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-brand-gold transition-all shadow-2xl disabled:bg-brand-gold"
+          >
+            <AnimatePresence mode="wait">
+              {isAdding ? (
+                <motion.div
+                  key="check"
+                  initial={{ scale: 0, rotate: -45 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  exit={{ scale: 0, rotate: 45 }}
+                  className="flex items-center gap-2"
+                >
+                  <Check className="h-4 w-4" />
+                  Added
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="bag"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  className="flex items-center gap-2"
+                >
+                  <ShoppingBag className="h-4 w-4" />
+                  Quick Add
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
         </div>
       </div>

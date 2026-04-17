@@ -1,12 +1,12 @@
 export const BHK_OPTIONS = [
-  { id: "1bhk", name: "1 BHK", image: "https://images.unsplash.com/photo-1536376074432-a2a2155294a5?auto=format&fit=crop&q=80&w=800", price: 450000 },
+  { id: "1bhk", name: "1 BHK", image: "https://images.unsplash.com/photo-1583847268964-b28dc2f51ac9?auto=format&fit=crop&q=80&w=800", price: 450000 },
   { id: "2bhk", name: "2 BHK", image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800", price: 750000 },
   { id: "3bhk", name: "3 BHK", image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800", price: 1100000 },
   { id: "4bhk", name: "4 BHK+", image: "https://images.unsplash.com/photo-1600585154340-be6199f7a096?auto=format&fit=crop&q=80&w=800", price: 1500000 },
 ];
 
 export const ROOM_OPTIONS = [
-  { id: "living", name: "Living Room", image: "https://images.unsplash.com/photo-1583847268964-b28dc2f51ac9?auto=format&fit=crop&q=80&w=800", basePrice: 200000 },
+  { id: "living", name: "Living Room", image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&q=80&w=800", basePrice: 200000 },
   { id: "kitchen", name: "Modular Kitchen", image: "https://images.unsplash.com/photo-1556911223-053b7c336582?auto=format&fit=crop&q=80&w=800", basePrice: 250000 },
   { id: "bedroom", name: "Master Bedroom", image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800", basePrice: 180000 },
   { id: "dining", name: "Dining Area", image: "https://images.unsplash.com/photo-1517705008128-361805f42e8a?auto=format&fit=crop&q=80&w=800", basePrice: 120000 },
