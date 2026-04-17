@@ -31,7 +31,7 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-10">
               <Link href="/shop" className="text-[11px] font-bold uppercase tracking-[0.25em] hover:text-brand-gold transition-all duration-300">Shop</Link>
               <Link href="/collections" className="text-[11px] font-bold uppercase tracking-[0.25em] hover:text-brand-gold transition-all duration-300">Collections</Link>
-              <Link href="/calculator" className="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-gold hover:opacity-70 transition-all duration-300">Calculator</Link>
+              <Link href="/calculator" className="text-[11px] font-bold uppercase tracking-[0.25em] hover:text-brand-gold transition-all duration-300">Calculator</Link>
             </div>
 
             {/* Center - Logo */}

@@ -9,6 +9,7 @@ export const ROOM_OPTIONS = [
   { id: "living", name: "Living Room", image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&q=80&w=800", basePrice: 200000 },
   { id: "kitchen", name: "Modular Kitchen", image: "https://images.unsplash.com/photo-1556911223-053b7c336582?auto=format&fit=crop&q=80&w=800", basePrice: 250000 },
   { id: "bedroom", name: "Master Bedroom", image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800", basePrice: 180000 },
+  { id: "kids_bedroom", name: "Kids Bedroom", image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800", basePrice: 150000 },
   { id: "dining", name: "Dining Area", image: "https://images.unsplash.com/photo-1517705008128-361805f42e8a?auto=format&fit=crop&q=80&w=800", basePrice: 120000 },
 ];
 
