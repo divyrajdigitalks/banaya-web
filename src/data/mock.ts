@@ -39,7 +39,7 @@ export const FEATURED_PRODUCTS = [
     price: 2450,
     category: "Decor",
     image: "https://images.unsplash.com/photo-1677761821976-4a2b4ed29437?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fENlcmFtaWMlMjBNaW5pbWFsaXN0JTIwVmFzZXxlbnwwfHwwfHx8MA%3D%3D",
-    hoverImage: "https://unsplash.com/photos/a-couple-of-vases-sitting-on-top-of-a-table-tSkPbVkiCqY",
+    hoverImage: "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: "p5",

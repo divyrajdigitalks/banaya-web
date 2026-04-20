@@ -14,12 +14,102 @@ export const ROOM_OPTIONS = [
 ];
 
 export const FURNITURE_ITEMS = [
-  { id: "bed", name: "Designer Bed", image: "https://images.unsplash.com/photo-1505693413171-293669746a57?auto=format&fit=crop&q=80&w=800", price: 45000 },
-  { id: "wardrobe_2", name: "2-Door Wardrobe", image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800", price: 35000 },
-  { id: "wardrobe_5", name: "5-Door Luxury Wardrobe", image: "https://images.unsplash.com/photo-1616486341351-79b5b038378d?auto=format&fit=crop&q=80&w=800", price: 85000 },
-  { id: "modular_kitchen", name: "L-Shape Kitchen", image: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&q=80&w=800", price: 150000 },
-  { id: "kitchen_overhead", name: "Kitchen Overhead Unit", image: "https://images.unsplash.com/photo-1556909190-eccf4a8bf97a?auto=format&fit=crop&q=80&w=800", price: 40000 },
-  { id: "mandir", name: "Pooja Mandir", image: "https://images.unsplash.com/photo-1615529328331-f8917597711f?auto=format&fit=crop&q=80&w=800", price: 25000 },
-  { id: "mirror", name: "Dressing Mirror", image: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=800", price: 12000 },
-  { id: "curtain", name: "Premium Curtains", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800", price: 8000 },
+  { 
+    id: "bed", 
+    name: "Bed", 
+    image: "https://images.unsplash.com/photo-1505693413171-293669746a57?auto=format&fit=crop&q=80&w=800",
+    options: [
+      { id: "king_bed", name: "King Size Bed", price: 45000 },
+      { id: "queen_bed", name: "Queen Size Bed", price: 35000 },
+    ]
+  },
+  { 
+    id: "bed_back", 
+    name: "Bed Back", 
+    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800",
+    options: [
+      { id: "cushioned_back", name: "Cushioned Back", price: 15000 },
+      { id: "wooden_back", name: "Wooden Back", price: 12000 },
+    ]
+  },
+  { 
+    id: "modular_kitchen", 
+    name: "Modular Kitchen", 
+    image: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&q=80&w=800",
+    options: [
+      { id: "kitchen_15ft", name: "Upto 15 FT", price: 150000 },
+      { id: "kitchen_20ft", name: "Upto 20 FT", price: 200000 },
+      { id: "kitchen_25ft", name: "Upto 25 FT", price: 250000 },
+    ]
+  },
+  { 
+    id: "mirror", 
+    name: "Dressing mirror", 
+    image: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=800",
+    options: [
+      { id: "mirror_storage", name: "Dressing mirror with storage", price: 18000 },
+      { id: "mirror_no_storage", name: "Dressing mirror without storage", price: 12000 },
+    ]
+  },
+  { id: "mandir", name: "Mandir", image: "https://images.unsplash.com/photo-1615529328331-f8917597711f?auto=format&fit=crop&q=80&w=800", price: 25000 },
+  { id: "kitchen_overhead", name: "Modular kitchen - Overhead unit", image: "https://images.unsplash.com/photo-1556909190-eccf4a8bf97a?auto=format&fit=crop&q=80&w=800", price: 40000 },
+  { id: "curtain", name: "Curtain", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800", price: 8000 },
+  { 
+    id: "wardrobe", 
+    name: "Wardrobe", 
+    image: "https://images.unsplash.com/photo-1616486341351-79b5b038378d?auto=format&fit=crop&q=80&w=800",
+    options: [
+      { id: "wardrobe_2", name: "Wardrobe with 2 drawer storage", price: 35000 },
+      { id: "wardrobe_5", name: "Wardrobe with 5 drawer storage", price: 85000 },
+    ]
+  },
+];
+
+export const DETAILED_FURNITURE = {
+  "Living Area": [
+    { id: "main_door", name: "Main Door", price: 25000 },
+    { id: "mandir_detailed", name: "Mandir", price: 30000 },
+    { id: "jali_door", name: "Jali door", price: 15000 },
+    { id: "tv_unit_detailed", name: "TV Unit", price: 45000 },
+    { id: "shoe_rack", name: "Shoe Rack", price: 12000 },
+    { id: "ac_piping_detailed", name: "AC Piping", price: 10000 },
+    { id: "decorative_wall", name: "Decorative Wall", price: 35000 },
+    { id: "paneling", name: "Paneling", price: 25000 },
+    { id: "sofa_fabric", name: "Sofa with fabric", price: 65000 },
+    { id: "partition", name: "Partition", price: 18000 },
+    { id: "curtain_detailed", name: "Curtain", price: 12000 },
+  ],
+  "Kitchen": [
+    { id: "modular_kitchen_overhead", name: "Modular kitchen - Overhead unit", price: 45000 },
+    { id: "breakfast_table", name: "Breakfast Table", price: 25000 },
+    { id: "profile_shutter", name: "Profile shutter unit", price: 35000 },
+  ],
+  "Bedroom": [
+    { id: "king_bed_detailed", name: "King Size Bed", price: 45000 },
+    { id: "queen_bed_detailed", name: "Queen Size Bed", price: 35000 },
+    { id: "sliding_wardrobe", name: "Sliding Wardrobe", price: 75000 },
+    { id: "swing_wardrobe", name: "Swing Wardrobe", price: 60000 },
+  ]
+};
+
+export const BASIC_REQUIREMENTS = [
+  { id: "elec_switch", name: "Electrical work with switch", icon: "Zap", price: 15000 },
+  { id: "ceiling", name: "Ceiling Work", icon: "Layers", price: 30000 },
+  { id: "switch", name: "Switch", icon: "Zap", price: 5000 },
+  { id: "paint", name: "Wall Paint", icon: "Paintbrush", price: 25000 },
+  { id: "fan", name: "Fan", icon: "Wind", price: 8000 },
+  { id: "ac_pipe", name: "AC Piping", icon: "Wind", price: 12000 },
+];
+
+export const GENERAL_SERVICES = [
+  { id: "wall_paint", name: "Wall Paint", price: 20000, icon: "Paintbrush" },
+  { id: "ceiling_work", name: "Ceiling Work", price: 30000, icon: "Layers" },
+  { id: "electrical", name: "Electrical work with switch", price: 15000, icon: "Zap" },
+  { id: "ac_piping", name: "AC Piping", price: 10000, icon: "Wind" },
+];
+
+export const BRAND_OPTIONS = [
+  { id: "standard", name: "Brand 1", multiplier: 1.0, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800" },
+  { id: "premium", name: "Brand 2", multiplier: 1.2, image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800" },
+  { id: "luxury", name: "Brand 3", multiplier: 1.5, image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800" },
 ];

@@ -45,6 +45,27 @@ h1, h2, h3, h4, h5, h6 {
   .gold-gradient {
     background: linear-gradient(135deg, #D4AF37 0%, #F7E7CE 50%, #C5A059 100%);
   }
+  .horizontal-scroll-section {
+    flex-shrink: 0;
+    width: 100vw;
+    height: 100%;
+    overflow-x: hidden; /* Keep horizontal overflow hidden for the main scroll */
+    overflow-y: auto; /* Allow vertical scrolling within the section */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Hide scrollbar for horizontal-scroll-section */
+  .horizontal-scroll-section::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, Opera */
+  }
+  .horizontal-scroll-section {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 
 /* Custom Scrollbar */
